@@ -137,7 +137,17 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        try {
+               Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/organsystem", "root", "rmb@1969");
+               Statement s = con.createStatement();
+               ResultSet rs= null;
+               String query = "select *from Recipient";
+               rs = s.executeQuery(query);
+               Donor_Table.setModel(DbUtils.resultSetToTableModel(rs));
+           }
+           catch(Exception e) {
+               JOptionPane.showMessageDialog(null, e);
+           }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
