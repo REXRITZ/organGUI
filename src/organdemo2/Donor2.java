@@ -10,6 +10,8 @@ public class Donor2 extends javax.swing.JFrame {
     
     public Donor2() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocation(300,50);
     }
 
     
@@ -449,12 +451,14 @@ public class Donor2 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "You cant donate as you dont match the criteria");
             }
             else {
+                
                 String Query = "INSERT INTO DONOR VALUES ('"+uname+"','"+fname+"','"+formatter.format(date)+"','"+emailid+"','"+addr+"','"+phone+"','"+blood+"','"+gend+"')";
                 s.execute(Query);
                 if(jCheckBox1.isSelected()) {
                     s.execute("update organ set available = available+1 where organ_name='Heart'");
                     s.execute("insert into donation values ('"+formatter.format(dat)+"','"+uname+"','Heart')");
                 }
+                
                 if(jCheckBox2.isSelected()) {
                     s.execute("update organ set available = available+1 where organ_name='Liver'");
                     s.execute("insert into donation values ('"+formatter.format(dat)+"','"+uname+"','Liver')");
